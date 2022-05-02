@@ -17,11 +17,46 @@ public class ListHolder {
     ArrayList<Trainer> TrainerList = new ArrayList();
     ArrayList<Assignment> AssignmentList = new ArrayList();
     ArrayList<Course> CourseList = new ArrayList();
+    ArrayList<StudentPerCourse> StudentPerCourseList = new ArrayList();
+    ArrayList<TrainerPerCourse> TrainerPerCourseList = new ArrayList();
+    ArrayList<AssignmentPerCourse> AssignmentPerCourseList = new ArrayList();
+    ArrayList<AssignmentsPerStudent> AssignmentsPerStudentList = new ArrayList();
 
     public ListHolder() {}
 
+    public ArrayList<AssignmentsPerStudent> getAssignmentsPerStudentList() {
+        return AssignmentsPerStudentList;
+    }
+
+    public void setAssignmentsPerStudentList(ArrayList<AssignmentsPerStudent> AssignmentsPerStudentList) {
+        this.AssignmentsPerStudentList = AssignmentsPerStudentList;
+    }
     public ArrayList<Student> getStudentList() {
         return StudentList;
+    }
+
+    public ArrayList<StudentPerCourse> getStudentPerCourseList() {
+        return StudentPerCourseList;
+    }
+
+    public void setStudentPerCourseList(ArrayList<StudentPerCourse> StudentPerCourseList) {
+        this.StudentPerCourseList = StudentPerCourseList;
+    }
+
+    public ArrayList<TrainerPerCourse> getTrainerPerCourseList() {
+        return TrainerPerCourseList;
+    }
+
+    public void setTrainerPerCourseList(ArrayList<TrainerPerCourse> TrainerPerCourseList) {
+        this.TrainerPerCourseList = TrainerPerCourseList;
+    }
+
+    public ArrayList<AssignmentPerCourse> getAssignmentPerCourseList() {
+        return AssignmentPerCourseList;
+    }
+
+    public void setAssignmentPerCourseList(ArrayList<AssignmentPerCourse> AssignmentPerCourseList) {
+        this.AssignmentPerCourseList = AssignmentPerCourseList;
     }
 
     public void setStudentList(ArrayList<Student> StudentList) {

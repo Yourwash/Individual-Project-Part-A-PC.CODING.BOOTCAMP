@@ -13,7 +13,7 @@ import java.util.Scanner;
  * @author Dante_Fiero
  */
 public class ListCreation {
- 
+
     boolean goNext = false;
     String yon;
     Scanner sc = new Scanner(System.in);
@@ -30,54 +30,112 @@ public class ListCreation {
             yon = sc.nextLine();
             switch (yon) {
                 case "Yes":
-                    Course course = new Course();
-                    listHolder.CourseList.add(course);;
-                    System.out.println(course);
-                    System.out.println(listHolder.getCourseList());
-                    Student student = new Student();
-                    listHolder.StudentList.add(student);
-                    System.out.println(student);
-                    Trainer trainer = new Trainer(listHolder);
-                    listHolder.TrainerList.add(trainer);
-                    System.out.println(trainer);
-                    goNext = true;
-                    break;
-                case "No":
-//                    System.out.println("How many courses do you wish generate?");
-//                    int i = sc.nextInt();
-                    int i = 5;
-                    for (int y = 1; y <= i; y++) {
-                        course = new Course(y);
+                    while (goNext == false) {
+                        Course course = new Course(listHolder);
                         listHolder.CourseList.add(course);
-                        System.out.println(course);                       
-                    }                       
-//                    System.out.println("How many students do you wish generate?");
-//                    i = sc.nextInt();
-                    int j = i*40;
-                    for (int y = 1; y <= j; y++) {
-                        student = new Student(y);
-                        listHolder.StudentList.add(student);
-                        System.out.println(student);
+                        System.out.println("If you wish to add another Course, type 'Yes', if not type 'No':");                      
+                        yon = sc.nextLine();
+                        switch (yon) {
+                            case "Yes":
+                                goNext = false;
+                                break;
+                            case "No":
+                                goNext = true;
+                                break;
+                        }
                     }
-//                    System.out.println("How many Trainers do you wish generate?");
-//                    i = sc.nextInt();
-//                    int k = i*16;
-                    for (int y = 1; y <= 16; y++) {
-                        trainer = new Trainer(y , listHolder);
+                    goNext = false;
+                    while (goNext == false) {
+                        Trainer trainer = new Trainer(listHolder);
                         listHolder.TrainerList.add(trainer);
-                        System.out.println(trainer);
+                        System.out.println("If you wish to add another Trainer, type 'Yes', if not type 'No':");
+                        yon = sc.nextLine();
+                        switch (yon) {
+                            case "Yes":
+                                goNext = false;
+                                break;
+                            case "No":
+                                goNext = true;
+                                break;
+                        }
                     }
-                    System.out.println(listHolder.getCourseList());
+                    StudentPerCourse spc = new StudentPerCourse(listHolder);
+                    listHolder.StudentPerCourseList.add(spc);
+                    AssignmentPerCourse apc = new AssignmentPerCourse(listHolder);
+                    listHolder.AssignmentPerCourseList.add(apc);
+                    for (int y = 0; y < listHolder.CourseList.size(); y++) {
+                        TrainerPerCourse tpc = new TrainerPerCourse(y, listHolder);
+                        listHolder.TrainerPerCourseList.add(tpc);
+                    }
+                    goNext = false;
+                    while (goNext == false) {
+                        System.out.println("Do any of the students you added, wish to participate in antother course as well? Type 'Yes', if not type 'No':");
+                        yon = sc.nextLine();
+                        switch (yon) {
+                            case "Yes":
+                                System.out.println("From left to right, in which course is the student enrolled? Type: 1 for the 1st, 2 for the 2nd etc.. ");
+                                for (int i = 0; i < listHolder.CourseList.size(); i++) {
+                                    System.out.println(listHolder.CourseList.get(i).getCourseTitle());
+                                }
+                                int i = sc.nextInt();
+                                System.out.println("From left to right, witch subject is the student attending? Type: 1 for the 1st, 2 for the 2nd etc.. ");
+                                System.out.println(listHolder.CourseList.get(i - 1).subjectList);
+                                int y = sc.nextInt();
+                                System.out.println("From left to right, witch is the student of your choice? Type: 1 for the 1st, 2 for the 2nd etc.. ");
+                                System.out.println(listHolder.CourseList.get(i - 1).subjectList.get(y - 1).StudentList);
+                                int z = sc.nextInt();
+                                System.out.println("From left to right, choose the new course. Type: 1 for the 1st, 2 for the 2nd etc.. ");
+                                for (int j = 0; j < listHolder.CourseList.size(); j++) {
+                                    System.out.println(listHolder.CourseList.get(j).getCourseTitle());
+                                }
+                                int j = sc.nextInt();
+                                System.out.println("From left to right, choose the new subject. Type: 1 for the 1st, 2 for the 2nd etc.. ");
+                                System.out.println(listHolder.CourseList.get(j - 1).subjectList);
+                                int k = sc.nextInt();
+                                int r = listHolder.CourseList.get(j - 1).subjectList.get(k - 1).StudentList.size();
+                                listHolder.CourseList.get(j - 1).subjectList.get(k - 1).StudentList.add(listHolder.CourseList.get(i - 1).subjectList.get(y - 1).StudentList.get(z-1));
+                                for (int m = 0; m < listHolder.CourseList.get(j - 1).subjectList.get(k - 1).AssignmentList.size(); m++) {
+                                    listHolder.CourseList.get(j - 1).subjectList.get(k - 1).StudentList.get(r).AssignmentList.add(listHolder.CourseList.get(j - 1).subjectList.get(k - 1).AssignmentList.get(m));
+                                }
+                                goNext = false;
+                                break;
+                            case "No":
+                                goNext = true;
+                                break;
+                        }
+                        goNext = true;
+                        break;
+                    }
+
+                case "No":
+                    for (int y = 1; y <= 5; y++) {
+                        Course course = new Course(y, listHolder);
+                        listHolder.CourseList.add(course);
+                        spc = new StudentPerCourse(listHolder);
+                        listHolder.StudentPerCourseList.add(spc);
+                        apc = new AssignmentPerCourse(listHolder);
+                        listHolder.AssignmentPerCourseList.add(apc);
+
+                    }
+                    for (int y = 1; y <= 16; y++) {
+                        Trainer trainer = new Trainer(y, listHolder);
+                        listHolder.TrainerList.add(trainer);
+                    }
+                    for (int y = 0; y < listHolder.CourseList.size(); y++) {
+                        TrainerPerCourse tpc = new TrainerPerCourse(y, listHolder);
+                        listHolder.TrainerPerCourseList.add(tpc);
+                    }
+
                     goNext = true;
                     break;
-            }                
+            }
         }
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-       
+
         return sb.toString();
     }
 
@@ -89,5 +147,4 @@ public class ListCreation {
         this.listHolder = listHolder;
     }
 
-    
 }

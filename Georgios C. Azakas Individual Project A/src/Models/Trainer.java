@@ -23,34 +23,20 @@ public class Trainer {
     ArrayList<Subject> subjectList = new ArrayList();
 
     public Trainer(ListHolder listHolder) throws ParseException {
-        goNext = false;
-        while (goNext == false) {
-            System.out.println("Type the Trainers first Name: ");
-            this.firstName = sc.nextLine();
-            System.out.println("Type the Trainers last Name: ");
-            this.lastName = sc.nextLine();
-            System.out.println("From left to right, which course would you like for the trainer to be a part of: Type: 1 for the 1st, 2 for the 2nd etc.. ");
-            for (int i = 0; i < listHolder.CourseList.size(); i++) {
-                System.out.println(listHolder.CourseList.get(i).getCourseTitle());
-            }
-            int i = sc.nextInt();
-            System.out.println("From left to right, which subject would you like for the trainer to teach; Type: 1 for the 1st, 2 for the 2nd etc.. ");
-            System.out.println(listHolder.CourseList.get(i - 1).subjectList);
-            int y = sc.nextInt();
-            this.subject = listHolder.CourseList.get(i - 1).subjectList.get(y - 1);
-            this.subjectList.add(subject);           
-            System.out.println("If you wish to add another Trainer, type 'Yes', if not type 'No':");
-            String yon = sc.nextLine();
-            yon = sc.nextLine();     
-            switch (yon) {
-                case "Yes":
-                    goNext = false;
-                    break;
-                case "No":
-                    goNext = true;
-                    break;
-            }           
+        System.out.println("Type the Trainers first Name: ");
+        this.firstName = sc.nextLine();
+        System.out.println("Type the Trainers last Name: ");
+        this.lastName = sc.nextLine();
+        System.out.println("From left to right, which course would you like for the trainer to be a part of: Type: 1 for the 1st, 2 for the 2nd etc.. ");
+        for (int i = 0; i < listHolder.CourseList.size(); i++) {
+            System.out.println(listHolder.CourseList.get(i).getCourseTitle());
         }
+        int i = sc.nextInt();
+        System.out.println("From left to right, which subject would you like for the trainer to teach; Type: 1 for the 1st, 2 for the 2nd etc.. ");
+        System.out.println(listHolder.CourseList.get(i - 1).subjectList);
+        int y = sc.nextInt();
+        this.subject = listHolder.CourseList.get(i - 1).subjectList.get(y - 1);
+        this.subjectList.add(subject);
     }
 
     /**
@@ -84,7 +70,6 @@ public class Trainer {
             }
         } else if (i < 12) {
             for (int j = 0; j < 5; j++) {
-                listHolder.CourseList.get(j).subjectList.get(5);
                 this.subjectList.add(listHolder.CourseList.get(j).subjectList.get(5));
             }
         } else if (i < 14) {
@@ -96,7 +81,6 @@ public class Trainer {
                 this.subjectList.add(listHolder.CourseList.get(j).subjectList.get(7));
             }
         }
-
     }
 
     public String getFirstName() {
@@ -119,7 +103,7 @@ public class Trainer {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Trainer: ").append(firstName).append(" ").append(lastName);
-        sb.append(" Teaching: ").append(subjectList);
+        sb.append(" Teaching: ").append("\n").append(subjectList);
         return sb.toString();
     }
 }

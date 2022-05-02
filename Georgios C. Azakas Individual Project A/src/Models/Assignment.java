@@ -44,6 +44,7 @@ public class Assignment implements FormattingDate {
             }
             System.out.println("If you wish to add another Assignment, type 'Yes', if not type 'No':");
             yon = sc.nextLine();
+            yon = sc.nextLine();
             switch (yon) {
                 case "Yes":
                     goNext = false;
@@ -56,13 +57,42 @@ public class Assignment implements FormattingDate {
     }
 
     public Assignment(int i, String subjectTitle, String date) throws ParseException {
-        this.title = subjectTitle + " Assignment " + i;
-        this.description = "Random Assignment";
+        if (i <= 5) {
+            this.title = subjectTitle + " Assignment " + i;
+            this.description = "Random Assignment";
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(sdf.parse(date));
+            cal.add(Calendar.DAY_OF_MONTH, i * 12);
+            this.subDateTime = sdf.format(cal.getTime());
+        } else if (i == 6) {
+            this.title = subjectTitle + " Individual Project ";
+            this.description = "Random assignment but not an assignment, but an assignment.";
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(sdf.parse(date));
+            cal.add(Calendar.DAY_OF_MONTH, i * 12);
+            this.subDateTime = sdf.format(cal.getTime());
+        } else {
+            this.title = subjectTitle + " Group Project ";
+            this.description = "Random assignment but not an assignment, but an assignment.";
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(sdf.parse(date));
+            cal.add(Calendar.DAY_OF_MONTH, i * 12);
+            this.subDateTime = sdf.format(cal.getTime());
+        }
+
+    }
+
+    public Assignment(int i, String subjectTitle, String date, boolean goNext) throws ParseException {
+        this.title = subjectTitle + " Individual Project ";
+        this.description = "Random Assignment but not assignment, but assignment.";
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar cal = Calendar.getInstance();
         cal.setTime(sdf.parse(date));
         cal.add(Calendar.DAY_OF_MONTH, i * 12);
-        this.subDateTime = sdf.format(cal.getTime());      
+        this.subDateTime = sdf.format(cal.getTime());
     }
 
     public int getTotalMark() {
@@ -95,6 +125,17 @@ public class Assignment implements FormattingDate {
 
     public void setOralMark(int oralMark) {
         this.oralMark = oralMark;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(title);
+        sb.append(" Submision Date: ").append(subDateTime);
+        sb.append(" Oral Mark: ").append(oralMark);
+        sb.append(" Total Mark: ").append(totalMark).append("\n");
+        sb.append("Description: ").append(description).append("\n");
+        return sb.toString();
     }
 
 }

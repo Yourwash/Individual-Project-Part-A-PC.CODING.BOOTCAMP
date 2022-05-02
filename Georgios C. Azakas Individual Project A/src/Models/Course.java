@@ -27,41 +27,30 @@ public class Course implements FormattingDate {
     boolean goNext = false;
     String yon;
     Scanner sc = new Scanner(System.in);
+    StudentPerCourse spc;
     ArrayList<Subject> subjectList = new ArrayList();
 
-    public Course() throws ParseException {
+    public Course(ListHolder listHolder) throws ParseException {
 
+        System.out.println("Type the title of the Course: (Example: CB1)");
+        this.courseTitle = sc.nextLine();
         while (goNext == false) {
-            System.out.println("Type the title of the Course: (Example: CB1)");
-            this.courseTitle = sc.nextLine();
-            while (goNext == false) {
-                System.out.println("Type the starting date of the Course: (dd-MM-yyyy)");
-                String tempDate = sc.next();
-                Date date = StringToDate(tempDate);
-                start_date = new SimpleDateFormat("dd-MM-yyyy").format(date);
-                System.out.println("Type the ending date of the Course: (dd-MM-yyyy)");
-                tempDate = sc.next();
-                date = StringToDate(tempDate);
-                end_date = new SimpleDateFormat("dd-MM-yyyy").format(date);
-                goNext = true;
-            }
-
-            this.subject = new Subject();
-            subjectList.add(this.subject);
-            System.out.println("If you wish to add another Course, type 'Yes', if not type 'No':");          
-            yon = sc.nextLine();
-            switch (yon) {
-                case "Yes":
-                    goNext = false;
-                    break;
-                case "No":
-                    goNext = true;
-                    break;
-            }
+            System.out.println("Type the starting date of the Course: (dd-MM-yyyy)");
+            String tempDate = sc.next();
+            Date date = StringToDate(tempDate);
+            start_date = new SimpleDateFormat("dd-MM-yyyy").format(date);
+            System.out.println("Type the ending date of the Course: (dd-MM-yyyy)");
+            tempDate = sc.next();
+            date = StringToDate(tempDate);
+            end_date = new SimpleDateFormat("dd-MM-yyyy").format(date);
+            goNext = true;
         }
+
+        this.subject = new Subject(listHolder);
+        subjectList.add(this.subject);
     }
 
-    public Course(int i) throws ParseException {
+    public Course(int i, ListHolder listHolder) throws ParseException {
         this.courseTitle = "CB" + i;
         int k = i * 3;
         int y = 0;
@@ -79,42 +68,8 @@ public class Course implements FormattingDate {
         this.end_date = "01-" + (4 + k) % 12 + "-20" + (22 + l);
 
         for (int z = 0; z < 8; z++) {
-            subject = new Subject(z ,courseTitle, start_date);
-            switch (z) {
-                case 0:
-                    subject.setsubjectTitle(courseTitle + " Java");
-                    subjectList.add(subject);                   
-                    break;
-                case 1:
-                    subject.setsubjectTitle(courseTitle + " Java Part Time");
-                    subjectList.add(subject);
-                    break;
-                case 2:
-                    subject.setsubjectTitle(courseTitle + " C#");
-                    subjectList.add(subject);
-                    break;
-                case 3:
-                    subject.setsubjectTitle(courseTitle + " C# Part Time");
-                    subjectList.add(subject);
-                    break;
-                case 4:
-                    subject.setsubjectTitle(courseTitle + " Javascript");
-                    subjectList.add(subject);
-                    break;
-                case 5:
-                    subject.setsubjectTitle(courseTitle + " Javascript Part Time");
-                    subjectList.add(subject);
-                    break;
-                case 6:
-                    subject.setsubjectTitle(courseTitle + " Python");
-                    subjectList.add(subject);
-                    break;
-                case 7:
-                    subject.setsubjectTitle(courseTitle + " Python Part Time");
-                    subjectList.add(subject);
-                    break;
-            }
-
+            subject = new Subject(z, courseTitle, start_date, listHolder);
+            subjectList.add(subject);
         }
 
     }
@@ -127,6 +82,14 @@ public class Course implements FormattingDate {
         sb.append("Stream: ").append("\n");
         sb.append(subjectList);
         return sb.toString();
+    }
+
+    public ArrayList<Subject> getSubjectList() {
+        return subjectList;
+    }
+
+    public void setSubjectList(ArrayList<Subject> subjectList) {
+        this.subjectList = subjectList;
     }
 
     public String getEnd_date() {
