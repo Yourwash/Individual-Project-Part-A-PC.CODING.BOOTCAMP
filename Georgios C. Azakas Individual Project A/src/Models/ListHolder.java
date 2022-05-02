@@ -21,8 +21,18 @@ public class ListHolder {
     ArrayList<TrainerPerCourse> TrainerPerCourseList = new ArrayList();
     ArrayList<AssignmentPerCourse> AssignmentPerCourseList = new ArrayList();
     ArrayList<AssignmentsPerStudent> AssignmentsPerStudentList = new ArrayList();
+    ArrayList<Student> MigasStudentList = new ArrayList();
+    
 
     public ListHolder() {}
+
+    public ArrayList<Student> getMigasStudentList() {
+        return MigasStudentList;
+    }
+
+    public void setMigasStudentList(ArrayList<Student> MigasStudentList) {
+        this.MigasStudentList = MigasStudentList;
+    }
 
     public ArrayList<AssignmentsPerStudent> getAssignmentsPerStudentList() {
         return AssignmentsPerStudentList;

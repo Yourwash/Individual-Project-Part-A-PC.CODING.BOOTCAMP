@@ -6,6 +6,7 @@
 package georgios.c.azakas.individual.project.a;
 
 import Models.ListCreation;
+import Models.Student;
 import java.text.ParseException;
 import java.util.Scanner;
 
@@ -65,7 +66,7 @@ public class GeorgiosCAzakasIndividualProjectA {
                         goNext = true;
                         break;
                     case "Migas Student List":
-                        System.out.println(newProject.getListHolder().getCourseList());
+                        System.out.println(newProject.getListHolder().getMigasStudentList());
                         goNext = true;
                         break;
                 }
@@ -81,7 +82,11 @@ public class GeorgiosCAzakasIndividualProjectA {
                     goNext = true;
                     break;
             }
-
         }
+        System.out.println("Type a date (22-02-2022) to see witch student's are due that week.");
+        String tempDate = sc.nextLine();
+        ListCreation newProject1 = new ListCreation(tempDate,newProject.getListHolder());
+        System.out.println(newProject1);
+
     }
 }

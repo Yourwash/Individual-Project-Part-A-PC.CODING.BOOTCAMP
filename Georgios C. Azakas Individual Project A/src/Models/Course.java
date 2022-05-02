@@ -9,7 +9,9 @@ import Interfaces.FormattingDate;
 import static Interfaces.FormattingDate.StringToDate;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -52,24 +54,34 @@ public class Course implements FormattingDate {
 
     public Course(int i, ListHolder listHolder) throws ParseException {
         this.courseTitle = "CB" + i;
-        int k = i * 3;
-        int y = 0;
-        int l = 0;
-        while ((1 + k) / 12 >= 1 && goNext == false) {
-            y = (1 + k) / 12;
-            goNext = true;
-        }
-        this.start_date = "01-" + (1 + k) % 12 + "-20" + (22 + y);
-        goNext = false;
-        while ((4 + k) / 12 >= 1 && goNext == false) {
-            l = (4 + k) / 12;
-            goNext = true;
-        }
-        this.end_date = "01-" + (4 + k) % 12 + "-20" + (22 + l);
+        String date = "03-01-2022 (Mon)";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (EEE)");
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(sdf.parse(date));
+            cal.add(Calendar.DAY_OF_MONTH,i*90);
+            this.start_date = sdf.format(cal.getTime());
+            cal.add(Calendar.DAY_OF_MONTH,i*180);
+            this.end_date = sdf.format(cal.getTime());
+
+//        int k = i * 3;
+//        int y = 0;
+//        int l = 0;
+//        while ((1 + k) / 12 >= 1 && goNext == false) {
+//            y = (1 + k) / 12;
+//            goNext = true;
+//        }
+//        this.start_date = "01-" + (1 + k) % 12 + "-20" + (22 + y);
+//        goNext = false;
+//        while ((4 + k) / 12 >= 1 && goNext == false) {
+//            l = (4 + k) / 12;
+//            goNext = true;
+//        }
+//        this.end_date = "01-" + (4 + k) % 12 + "-20" + (22 + l);
 
         for (int z = 0; z < 8; z++) {
-            subject = new Subject(z, courseTitle, start_date, listHolder);
+            subject = new Subject(z, courseTitle, start_date, listHolder);           
             subjectList.add(subject);
+            
         }
 
     }

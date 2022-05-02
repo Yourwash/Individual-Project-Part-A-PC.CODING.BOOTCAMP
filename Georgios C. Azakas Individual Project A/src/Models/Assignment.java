@@ -9,6 +9,10 @@ import Interfaces.FormattingDate;
 import static Interfaces.FormattingDate.StringToDate;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.Calendar;
@@ -39,7 +43,7 @@ public class Assignment implements FormattingDate {
                 System.out.println("Type the submission date of the Assignment: (dd-MM-yyyy)");
                 String tempDate = sc.next();
                 Date date = StringToDate(tempDate);
-                this.subDateTime = new SimpleDateFormat("dd-MM-yyyy").format(date);
+                this.subDateTime = new SimpleDateFormat("dd-MM-yyyy (EEE)").format(date);
                 goNext = true;
             }
             System.out.println("If you wish to add another Assignment, type 'Yes', if not type 'No':");
@@ -60,39 +64,56 @@ public class Assignment implements FormattingDate {
         if (i <= 5) {
             this.title = subjectTitle + " Assignment " + i;
             this.description = "Random Assignment";
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (EEE)");
             Calendar cal = Calendar.getInstance();
             cal.setTime(sdf.parse(date));
             cal.add(Calendar.DAY_OF_MONTH, i * 12);
+            int d = cal.get(Calendar.DAY_OF_WEEK);
+            switch (d) {
+                case 7:
+                    cal.add(Calendar.DAY_OF_MONTH, -1);
+                    break;
+                case 1:
+                    cal.add(Calendar.DAY_OF_MONTH, 1);
+                    break;
+            }
             this.subDateTime = sdf.format(cal.getTime());
         } else if (i == 6) {
             this.title = subjectTitle + " Individual Project ";
             this.description = "Random assignment but not an assignment, but an assignment.";
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (EEE)");
             Calendar cal = Calendar.getInstance();
             cal.setTime(sdf.parse(date));
             cal.add(Calendar.DAY_OF_MONTH, i * 12);
+            int d = cal.get(Calendar.DAY_OF_WEEK);
+            switch (d) {
+                case 7:
+                    cal.add(Calendar.DAY_OF_MONTH, -1);
+                    break;
+                case 1:
+                    cal.add(Calendar.DAY_OF_MONTH, 1);
+                    break;
+            }
             this.subDateTime = sdf.format(cal.getTime());
         } else {
             this.title = subjectTitle + " Group Project ";
             this.description = "Random assignment but not an assignment, but an assignment.";
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (EEE)");
             Calendar cal = Calendar.getInstance();
             cal.setTime(sdf.parse(date));
             cal.add(Calendar.DAY_OF_MONTH, i * 12);
+            int d = cal.get(Calendar.DAY_OF_WEEK);
+            switch (d) {
+                case 7:
+                    cal.add(Calendar.DAY_OF_MONTH, -1);
+                    break;
+                case 1:
+                    cal.add(Calendar.DAY_OF_MONTH, 1);
+                    break;
+            }
             this.subDateTime = sdf.format(cal.getTime());
         }
 
-    }
-
-    public Assignment(int i, String subjectTitle, String date, boolean goNext) throws ParseException {
-        this.title = subjectTitle + " Individual Project ";
-        this.description = "Random Assignment but not assignment, but assignment.";
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(sdf.parse(date));
-        cal.add(Calendar.DAY_OF_MONTH, i * 12);
-        this.subDateTime = sdf.format(cal.getTime());
     }
 
     public int getTotalMark() {
@@ -125,6 +146,14 @@ public class Assignment implements FormattingDate {
 
     public void setOralMark(int oralMark) {
         this.oralMark = oralMark;
+    }
+
+    public String getSubDateTime() {
+        return subDateTime;
+    }
+
+    public void setSubDateTime(String subDateTime) {
+        this.subDateTime = subDateTime;
     }
 
     @Override
