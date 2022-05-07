@@ -14,6 +14,8 @@ import java.util.ArrayList;
  * @author Dante_Fiero
  */
 public class Student {
+      
+//    Go to Trainer.
 
     private String firstName;
     private String lastName;
@@ -52,6 +54,7 @@ public class Student {
                     break;
             }
             
+//            Creates students unique assignment list.
             this.AssignmentList = listHolder.AssignmentList;
         }
 

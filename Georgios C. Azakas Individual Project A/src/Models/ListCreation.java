@@ -76,6 +76,7 @@ public class ListCreation {
                         listHolder.TrainerPerCourseList.add(tpc);
                     }
 
+//                    This is a menu, that allows the user to input students already enroled in a course to another course as well.
                     goNext = false;
                     while (goNext == false) {
                         System.out.println("Do any of the students you added, wish to participate in antother course as well? Type 'Yes', if not type 'No':");
@@ -117,6 +118,9 @@ public class ListCreation {
                     break;
 
                 case "No":
+                    
+//                    Initializes synthetic data creation process. 
+//                    (5 Courses with a stream of 8 Subjects, each containg at least 20 Students and 7 Assignments. A total of 16 Trainers Instruct in all of the courses. )
                     for (int y = 1; y <= 5; y++) {
                         Course course = new Course(y, listHolder);
                         listHolder.CourseList.add(course);
@@ -147,6 +151,12 @@ public class ListCreation {
     }
 
     public ListCreation(String tempDate, ListHolder listHolder) throws ParseException {
+        
+//        This constractor make the projects last query possible.
+//        Takes in the already made listHolder oblect.               
+//        Using 5 variables (one for each day of the week (Mon - Friday)), which are created based on the users input.
+//        Go to ListHolder.  
+        
         
         String td1;
         String td2;

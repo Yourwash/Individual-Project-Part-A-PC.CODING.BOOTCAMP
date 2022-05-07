@@ -15,6 +15,8 @@ import java.util.Scanner;
  * @author Dante_Fiero
  */
 public class Input {
+    
+//    Validates users input through out all of the program.
 
     Scanner sc = new Scanner(System.in);
 

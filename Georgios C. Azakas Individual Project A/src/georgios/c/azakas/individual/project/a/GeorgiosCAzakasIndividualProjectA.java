@@ -8,7 +8,6 @@ package georgios.c.azakas.individual.project.a;
 import Models.ListCreation;
 import Utilities.Input;
 import java.text.ParseException;
-import java.util.Calendar;
 
 /**
  *
@@ -21,8 +20,15 @@ public class GeorgiosCAzakasIndividualProjectA {
      * @throws java.text.ParseException
      */
     public static void main(String[] args) throws ParseException {
-        // TODO code application logic here
+
         ListCreation newProject = new ListCreation();
+        
+//        Class ListCreation is the first is where everything begins being created.
+//        In here we see only see the main menu of the project.
+//        I have used <while> with boollean <goNext>, throughout all of my classes. This is firstly in order to loop through parts of the code
+//        and protect the program for incorect typing.Secondly to give the opertunity to the user, to serially input and check a lot of diffrent things.
+//        Go to ListCreation.
+        
         boolean goNext = false;
         while (goNext == false) {
             goNext = false;

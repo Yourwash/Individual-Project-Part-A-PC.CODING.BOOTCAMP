@@ -15,6 +15,22 @@ import java.util.Calendar;
  *
  * @author Dante_Fiero
  */
+
+//This is how everything is conected:
+
+//Course
+//        Subjects
+//                Students
+//                        Assignments
+//                Assignments
+//                Trainer
+//                        Subjects
+
+//Go to Subject.
+           
+
+
+
 public class Course {
 
     private String courseTitle;

@@ -52,6 +52,10 @@ public class Assignment {
     }
 
     public Assignment(int i, String subjectTitle, String date) throws ParseException {
+        
+//        Creates Asignmetns 1-5, an individual Project and an group Project.
+//        Inputs a due date to the assignments, that is not Saturday or Sunday.
+//        Go to Student.   
 
         if (i <= 5) {
             this.title = subjectTitle + " Assignment " + i;

@@ -12,6 +12,9 @@ import java.util.ArrayList;
  * @author Dante_Fiero
  */
 public class ListHolder {
+    
+//    This class is used as a database.
+//    Go to Course.      
 
     ArrayList<Student> StudentList = new ArrayList();
     ArrayList<Trainer> TrainerList = new ArrayList();

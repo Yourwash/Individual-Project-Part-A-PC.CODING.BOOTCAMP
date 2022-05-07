@@ -14,7 +14,9 @@ import java.util.ArrayList;
  * @author Dante_Fiero
  */
 public class Subject {
-
+    
+//    Go to Assignment.
+    
     private String subjectTitle;
     Assignment assignment;
     Student student;
@@ -136,6 +138,7 @@ public class Subject {
             listHolder.StudentList.add(student);
             this.StudentList.add(student);
             
+//            Inputs existing student in to another course.
             if (listHolder.CourseList.size() > 0) {               
                 this.StudentList.add(listHolder.CourseList.get(0).subjectList.get(i).StudentList.get(0));
                 listHolder.StudentList.add(listHolder.CourseList.get(0).subjectList.get(i).StudentList.get(0));

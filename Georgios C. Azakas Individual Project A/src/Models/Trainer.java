@@ -27,8 +27,8 @@ public class Trainer {
         this.firstName = Input.inputText();
         System.out.println("Type the Trainers last Name: ");
         this.lastName = Input.inputText();
-        System.out.println("From left to right, which course would you like for the trainer to be a part of: Type: 1 for the 1st, 2 for the 2nd etc.. ");
         
+        System.out.println("From left to right, which course would you like for the trainer to be a part of: Type: 1 for the 1st, 2 for the 2nd etc.. ");
         for (int i = 0; i < listHolder.CourseList.size(); i++) {
             System.out.println(listHolder.CourseList.get(i).getCourseTitle());
         }
@@ -48,6 +48,10 @@ public class Trainer {
      * @throws ParseException
      */
     public Trainer(int i, ListHolder listHolder) throws ParseException {
+        
+//        Creates Trainers and assigns subjects to them.
+//        All ***per*** are used to create lists of the same name.
+//        Go to Input in Utilites.
         
         this.firstName = "Reniart " + i;
         this.lastName = "Gnidoc " + i;
