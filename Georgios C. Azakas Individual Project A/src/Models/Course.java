@@ -5,21 +5,17 @@
  */
 package Models;
 
-import Interfaces.FormattingDate;
-import static Interfaces.FormattingDate.StringToDate;
+import Utilities.Input;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
 
 /**
  *
  * @author Dante_Fiero
  */
-public class Course implements FormattingDate {
+public class Course {
 
     private String courseTitle;
     private Subject subject;
@@ -28,23 +24,18 @@ public class Course implements FormattingDate {
     private String end_date;
     boolean goNext = false;
     String yon;
-    Scanner sc = new Scanner(System.in);
     StudentPerCourse spc;
     ArrayList<Subject> subjectList = new ArrayList();
 
     public Course(ListHolder listHolder) throws ParseException {
 
         System.out.println("Type the title of the Course: (Example: CB1)");
-        this.courseTitle = sc.nextLine();
+        this.courseTitle = Input.inputText();
         while (goNext == false) {
             System.out.println("Type the starting date of the Course: (dd-MM-yyyy)");
-            String tempDate = sc.next();
-            Date date = StringToDate(tempDate);
-            start_date = new SimpleDateFormat("dd-MM-yyyy").format(date);
+            start_date = Input.inputDate();
             System.out.println("Type the ending date of the Course: (dd-MM-yyyy)");
-            tempDate = sc.next();
-            date = StringToDate(tempDate);
-            end_date = new SimpleDateFormat("dd-MM-yyyy").format(date);
+            end_date = Input.inputDate();
             goNext = true;
         }
 
@@ -56,12 +47,12 @@ public class Course implements FormattingDate {
         this.courseTitle = "CB" + i;
         String date = "03-01-2022 (Mon)";
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (EEE)");
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(sdf.parse(date));
-            cal.add(Calendar.DAY_OF_MONTH,i*90);
-            this.start_date = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH,i*180);
-            this.end_date = sdf.format(cal.getTime());
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(sdf.parse(date));
+        cal.add(Calendar.DAY_OF_MONTH, (i - 1) * 90);
+        this.start_date = sdf.format(cal.getTime());
+        cal.add(Calendar.DAY_OF_MONTH, 90);
+        this.end_date = sdf.format(cal.getTime());
 
 //        int k = i * 3;
 //        int y = 0;
@@ -77,11 +68,10 @@ public class Course implements FormattingDate {
 //            goNext = true;
 //        }
 //        this.end_date = "01-" + (4 + k) % 12 + "-20" + (22 + l);
-
         for (int z = 0; z < 8; z++) {
-            subject = new Subject(z, courseTitle, start_date, listHolder);           
+            subject = new Subject(z, courseTitle, start_date, listHolder);
             subjectList.add(subject);
-            
+
         }
 
     }

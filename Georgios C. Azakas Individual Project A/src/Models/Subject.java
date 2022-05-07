@@ -5,9 +5,9 @@
  */
 package Models;
 
+import Utilities.Input;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
@@ -24,7 +24,6 @@ public class Subject {
 
     boolean goNext = false;
     String yon;
-    Scanner sc = new Scanner(System.in);
 
     public ArrayList<Student> getStudentList() {
         return StudentList;
@@ -38,7 +37,7 @@ public class Subject {
         while (goNext == false) {
             while (goNext == false) {
                 System.out.println("Type one of the follwing subjects: Java, C#, Javascript, Python");
-                this.subjectTitle = sc.nextLine();
+                this.subjectTitle = Input.inputText();
                 switch (subjectTitle) {
                     case "Java":
                         goNext = true;
@@ -57,7 +56,7 @@ public class Subject {
             goNext = false;
             while (goNext == false) {
                 System.out.println("If this subject is part time, type 'Yes', if not type 'No':");
-                yon = sc.nextLine();
+                yon = Input.inputText();
                 switch (yon) {
                     case "Yes":
                         this.subjectTitle = subjectTitle + " Part Time";
@@ -70,7 +69,7 @@ public class Subject {
                 }
             }
 
-            this.student = new Student(this.AssignmentList);
+            this.student = new Student(listHolder);
             StudentList.add(student);
             listHolder.StudentList.add(this.student);
             AssignmentsPerStudent aps = new AssignmentsPerStudent(this.student, AssignmentList);
@@ -78,9 +77,8 @@ public class Subject {
             this.assignment = new Assignment();
             AssignmentList.add(assignment);
             listHolder.AssignmentList.add(this.assignment);
-
             System.out.println("If you wish to add another subject, type 'Yes', if not type 'No':");
-            yon = sc.nextLine();
+            yon = Input.inputText();
             switch (yon) {
                 case "Yes":
                     goNext = false;

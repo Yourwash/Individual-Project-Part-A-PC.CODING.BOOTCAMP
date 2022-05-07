@@ -5,9 +5,9 @@
  */
 package Models;
 
+import Utilities.Input;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
@@ -16,7 +16,6 @@ import java.util.Scanner;
 public class Trainer {
 
     boolean goNext;
-    Scanner sc = new Scanner(System.in);
     private String firstName;
     private String lastName;
     private Subject subject;
@@ -24,17 +23,17 @@ public class Trainer {
 
     public Trainer(ListHolder listHolder) throws ParseException {
         System.out.println("Type the Trainers first Name: ");
-        this.firstName = sc.nextLine();
+        this.firstName = Input.inputText();
         System.out.println("Type the Trainers last Name: ");
-        this.lastName = sc.nextLine();
+        this.lastName = Input.inputText();
         System.out.println("From left to right, which course would you like for the trainer to be a part of: Type: 1 for the 1st, 2 for the 2nd etc.. ");
         for (int i = 0; i < listHolder.CourseList.size(); i++) {
             System.out.println(listHolder.CourseList.get(i).getCourseTitle());
         }
-        int i = sc.nextInt();
+        int i = Input.inputInt();
         System.out.println("From left to right, which subject would you like for the trainer to teach; Type: 1 for the 1st, 2 for the 2nd etc.. ");
         System.out.println(listHolder.CourseList.get(i - 1).subjectList);
-        int y = sc.nextInt();
+        int y = Input.inputInt();
         this.subject = listHolder.CourseList.get(i - 1).subjectList.get(y - 1);
         this.subjectList.add(subject);
     }

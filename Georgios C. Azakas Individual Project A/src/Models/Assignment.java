@@ -5,23 +5,16 @@
  */
 package Models;
 
-import Interfaces.FormattingDate;
-import static Interfaces.FormattingDate.StringToDate;
+import Utilities.Input;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.temporal.TemporalAccessor;
-import java.util.Date;
-import java.util.Scanner;
 import java.util.Calendar;
 
 /**
  *
  * @author Dante_Fiero
  */
-public class Assignment implements FormattingDate {
+public class Assignment {
 
     private String title;
     private String description;
@@ -30,25 +23,22 @@ public class Assignment implements FormattingDate {
     private int totalMark;
     boolean goNext = false;
     String yon;
-    Scanner sc = new Scanner(System.in);
+  
 
     public Assignment() throws ParseException {
         while (goNext == false) {
             System.out.println("Type the title of the Assignment: (Example: Assignment 1)");
-            this.title = sc.nextLine();
+            this.title = Input.inputText();
             System.out.println("Describe the assignment:");
-            this.description = sc.nextLine();
+            this.description = Input.inputText();
 
             while (goNext == false) {
-                System.out.println("Type the submission date of the Assignment: (dd-MM-yyyy)");
-                String tempDate = sc.next();
-                Date date = StringToDate(tempDate);
-                this.subDateTime = new SimpleDateFormat("dd-MM-yyyy (EEE)").format(date);
+                System.out.println("Type the submission date of the Assignment: (dd-MM-yyyy)");                          
+                this.subDateTime = Input.inputDate();
                 goNext = true;
             }
-            System.out.println("If you wish to add another Assignment, type 'Yes', if not type 'No':");
-            yon = sc.nextLine();
-            yon = sc.nextLine();
+            System.out.println("If you wish to add another Assignment, type 'Yes', if not type 'No':");         
+            yon = Input.inputText();
             switch (yon) {
                 case "Yes":
                     goNext = false;

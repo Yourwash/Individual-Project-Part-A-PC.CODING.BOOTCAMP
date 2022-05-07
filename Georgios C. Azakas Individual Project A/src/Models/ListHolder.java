@@ -22,6 +22,7 @@ public class ListHolder {
     ArrayList<AssignmentPerCourse> AssignmentPerCourseList = new ArrayList();
     ArrayList<AssignmentsPerStudent> AssignmentsPerStudentList = new ArrayList();
     ArrayList<Student> MigasStudentList = new ArrayList();
+    ArrayList<Student> StudentDueList = new ArrayList();
     
 
     public ListHolder() {}
@@ -97,14 +98,17 @@ public class ListHolder {
         this.CourseList = CourseList;
     }
 
+    public ArrayList<Student> getStudentDueList() {
+        return StudentDueList;
+    }
+
+    public void setStudentDueList(ArrayList<Student> StudentDueList) {
+        this.StudentDueList = StudentDueList;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("ListHolder{StudentList=").append(StudentList);
-        sb.append(", TrainerList=").append(TrainerList);
-        sb.append(", AssignmentList=").append(AssignmentList);
-        sb.append(", CourseList=").append(CourseList);
-        sb.append('}');
+        StringBuilder sb = new StringBuilder();        
         return sb.toString();
     }
 

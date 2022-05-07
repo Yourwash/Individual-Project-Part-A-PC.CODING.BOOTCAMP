@@ -5,19 +5,16 @@
  */
 package Models;
 
-import Interfaces.FormattingDate;
-import static Interfaces.FormattingDate.StringToDate;
+import Utilities.Input;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 /**
  *
  * @author Dante_Fiero
  */
-public class Student implements FormattingDate {
+public class Student {
 
     private String firstName;
     private String lastName;
@@ -27,28 +24,24 @@ public class Student implements FormattingDate {
     Scanner sc = new Scanner(System.in);
     boolean goNext = false;
 
-    public Student(ArrayList<Assignment> AssignmentList) throws ParseException {
+    public Student(ListHolder listHolder) throws ParseException {
         while (goNext == false) {
             System.out.println("Add a student to this class. ");
             System.out.println("Type the students first Name: ");
-            this.firstName = sc.nextLine();
+            this.firstName = Input.inputText();
 
             System.out.println("Type the sutdents last Name: ");
-            this.lastName = sc.nextLine();
+            this.lastName = Input.inputText();
 
             while (goNext == false) {
                 System.out.println("Type the student's date of birth: (dd-MM-yyyy)");
-                String tempDate = sc.next();
-                Date date = StringToDate(tempDate);
-                dateOfBirth = new SimpleDateFormat("dd-MM-yyyy").format(date);
+                dateOfBirth = Input.inputDate();
                 goNext = true;
             }
-
             System.out.println("Type the sutdents tuition fees: ");
-            this.tuitionFees = sc.nextDouble();
+            this.tuitionFees = Input.inputDouble();                
             System.out.println("If you wish to add another student, type 'Yes', if not type 'No':");
-            String yon = sc.nextLine();
-            yon = sc.nextLine();
+            String yon = Input.inputText();
             switch (yon) {
                 case "Yes":
                     goNext = false;
@@ -57,10 +50,10 @@ public class Student implements FormattingDate {
                     goNext = true;
                     break;
             }
-            this.AssignmentList = AssignmentList;
-                    
+            this.AssignmentList = listHolder.AssignmentList;
+
         }
-                    
+
     }
 
     public ArrayList<Assignment> getAssignmentList() {
@@ -122,9 +115,9 @@ public class Student implements FormattingDate {
         sb.append("\n");
         return sb.toString();
     }
-   
+
     public String customToString() {
-        StringBuilder sb = new StringBuilder();     
+        StringBuilder sb = new StringBuilder();
         sb.append(AssignmentList);
         sb.append("\n");
         return sb.toString();

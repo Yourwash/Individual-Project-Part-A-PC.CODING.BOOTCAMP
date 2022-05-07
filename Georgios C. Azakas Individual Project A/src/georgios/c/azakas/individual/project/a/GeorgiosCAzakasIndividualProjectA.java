@@ -6,9 +6,9 @@
 package georgios.c.azakas.individual.project.a;
 
 import Models.ListCreation;
-import Models.Student;
+import Utilities.Input;
 import java.text.ParseException;
-import java.util.Scanner;
+import java.util.Calendar;
 
 /**
  *
@@ -22,15 +22,13 @@ public class GeorgiosCAzakasIndividualProjectA {
      */
     public static void main(String[] args) throws ParseException {
         // TODO code application logic here
-
         ListCreation newProject = new ListCreation();
-        Scanner sc = new Scanner(System.in);
         boolean goNext = false;
         while (goNext == false) {
             goNext = false;
             while (goNext == false) {
-                System.out.println("Which list would you like to print? Type the names as follows: Student List, Trainer List, Assignment List, Course List, Students per Course List, Trainers per Course List, Assignments per Course List, Assignment per Student List, Migas Student List");
-                String temp = sc.nextLine();
+                System.out.println("Which list would you like to print? Type the names as follows: Student List, Trainer List, Assignment List, Course List, Students per Course List, Trainers per Course List, Assignments per Course List, Assignment per Student List, Migas Student List");               
+                String temp = Input.inputText();
                 switch (temp) {
                     case "Student List":
                         System.out.println(newProject.getListHolder().getStudentList());
@@ -73,7 +71,7 @@ public class GeorgiosCAzakasIndividualProjectA {
             }
             goNext = false;
             System.out.println("Would like to check another list? Type 'Yes', if not type 'No':");
-            String yon = sc.nextLine();
+            String yon = Input.inputText();
             switch (yon) {
                 case "Yes":
                     goNext = false;
@@ -84,9 +82,9 @@ public class GeorgiosCAzakasIndividualProjectA {
             }
         }
         System.out.println("Type a date (22-02-2022) to see witch student's are due that week.");
-        String tempDate = sc.nextLine();
-        ListCreation newProject1 = new ListCreation(tempDate,newProject.getListHolder());
-        System.out.println(newProject1);
+        String tempDate = Input.inputDate();
+        ListCreation newProject1 = new ListCreation(tempDate, newProject.getListHolder());
+        System.out.println(newProject1.getListHolder().getStudentDueList());
 
     }
 }

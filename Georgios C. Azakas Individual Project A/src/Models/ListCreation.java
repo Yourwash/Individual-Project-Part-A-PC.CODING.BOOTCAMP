@@ -5,7 +5,7 @@
  */
 package Models;
 
-import static java.lang.reflect.Array.set;
+import Utilities.Input;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -34,14 +34,14 @@ public class ListCreation {
         this.listHolder = new ListHolder();
         while (goNext == false) {
             System.out.println("If you want to input your own data, type 'Yes', if now type 'No': ");
-            yon = sc.nextLine();
+            yon = Input.inputText();
             switch (yon) {
                 case "Yes":
                     while (goNext == false) {
                         Course course = new Course(listHolder);
                         listHolder.CourseList.add(course);
                         System.out.println("If you wish to add another Course, type 'Yes', if not type 'No':");
-                        yon = sc.nextLine();
+                        yon = Input.inputText();
                         switch (yon) {
                             case "Yes":
                                 goNext = false;
@@ -56,7 +56,7 @@ public class ListCreation {
                         Trainer trainer = new Trainer(listHolder);
                         listHolder.TrainerList.add(trainer);
                         System.out.println("If you wish to add another Trainer, type 'Yes', if not type 'No':");
-                        yon = sc.nextLine();
+                        yon = Input.inputText();
                         switch (yon) {
                             case "Yes":
                                 goNext = false;
@@ -77,7 +77,7 @@ public class ListCreation {
                     goNext = false;
                     while (goNext == false) {
                         System.out.println("Do any of the students you added, wish to participate in antother course as well? Type 'Yes', if not type 'No':");
-                        yon = sc.nextLine();
+                        yon = Input.inputText();
                         switch (yon) {
                             case "Yes":
                                 System.out.println("From left to right, in which course is the student enrolled? Type: 1 for the 1st, 2 for the 2nd etc.. ");
@@ -145,99 +145,108 @@ public class ListCreation {
     }
 
     public ListCreation(String tempDate, ListHolder listHolder) throws ParseException {
-
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar cal = Calendar.getInstance();
         cal.setTime(sdf.parse(tempDate));
         int d = cal.get(Calendar.DAY_OF_WEEK);
+        System.out.println(d);
         String td1;
         String td2;
         String td3;
         String td4;
         String td5;
         if (d == 7) {
-            cal.add(Calendar.DAY_OF_MONTH, -6);
+            cal.add(Calendar.DAY_OF_YEAR, -5);
             td1 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, -5);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td2 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, -4);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td3 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, -3);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td4 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, -2);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td5 = sdf.format(cal.getTime());
         } else if (d == 1) {
-            cal.add(Calendar.DAY_OF_MONTH, 0);
+            cal.add(Calendar.DAY_OF_YEAR, -6);
             td1 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, 1);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td2 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, 2);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td3 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, 3);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td4 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, 4);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td5 = sdf.format(cal.getTime());
+
         } else if (d == 2) {
-            cal.add(Calendar.DAY_OF_MONTH, -1);
+            cal.add(Calendar.DAY_OF_YEAR, 0);
             td1 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, 0);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td2 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, 1);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td3 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, 2);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td4 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, 3);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td5 = sdf.format(cal.getTime());
+
         } else if (d == 3) {
-            cal.add(Calendar.DAY_OF_MONTH, -2);
+            cal.add(Calendar.DAY_OF_YEAR, -1);
             td1 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, -1);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td2 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, 0);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td3 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, 1);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td4 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, 2);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td5 = sdf.format(cal.getTime());
-        } else if (d ==4) {
-            cal.add(Calendar.DAY_OF_MONTH, -3);
+
+        } else if (d == 4) {
+            cal.add(Calendar.DAY_OF_YEAR, -2);
             td1 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, -2);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td2 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, -1);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td3 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, 0);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td4 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, 1);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td5 = sdf.format(cal.getTime());
+
         } else if (d == 5) {
-            cal.add(Calendar.DAY_OF_MONTH, -4);
+            cal.add(Calendar.DAY_OF_YEAR, -3);
             td1 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, -3);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td2 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, -2);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td3 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, -1);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td4 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, 0);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td5 = sdf.format(cal.getTime());
+
         } else {
-            cal.add(Calendar.DAY_OF_MONTH, -5);
+            cal.add(Calendar.DAY_OF_YEAR, -4);
             td1 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, -4);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td2 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, -3);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td3 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, -2);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td4 = sdf.format(cal.getTime());
-            cal.add(Calendar.DAY_OF_MONTH, -1);
+            cal.add(Calendar.DAY_OF_YEAR, 1);
             td5 = sdf.format(cal.getTime());
         }
-
+        System.out.println(td1);
+        System.out.println(td2);
+        System.out.println(td3);
+        System.out.println(td4);
+        System.out.println(td5);
         for (Student student : listHolder.StudentList) {
             for (int i = 0; i < student.AssignmentList.size(); i++) {
                 if (student.AssignmentList.get(i).getSubDateTime().equals(td1) || student.AssignmentList.get(i).getSubDateTime().equals(td2) || student.AssignmentList.get(i).getSubDateTime().equals(td3) || student.AssignmentList.get(i).getSubDateTime().equals(td4) || student.AssignmentList.get(i).getSubDateTime().equals(td5)) {
-                    System.out.println(student);
+                    this.listHolder.StudentDueList.add(student);
                 }
             }
         }
