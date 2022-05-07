@@ -10,7 +10,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 
 /**
@@ -21,16 +20,16 @@ public class ListCreation {
 
     boolean goNext = false;
     String yon;
-    Scanner sc = new Scanner(System.in);
     private ListHolder listHolder;
-    Set<Student> setStudent = new HashSet<>();
     String tempDate;
+    Set<Student> setStudent = new HashSet<>();
 
     /**
      *
      * @throws ParseException
      */
     public ListCreation() throws ParseException {
+
         this.listHolder = new ListHolder();
         while (goNext == false) {
             System.out.println("If you want to input your own data, type 'Yes', if now type 'No': ");
@@ -51,6 +50,7 @@ public class ListCreation {
                                 break;
                         }
                     }
+
                     goNext = false;
                     while (goNext == false) {
                         Trainer trainer = new Trainer(listHolder);
@@ -66,6 +66,7 @@ public class ListCreation {
                                 break;
                         }
                     }
+
                     StudentPerCourse spc = new StudentPerCourse(listHolder);
                     listHolder.StudentPerCourseList.add(spc);
                     AssignmentPerCourse apc = new AssignmentPerCourse(listHolder);
@@ -74,6 +75,7 @@ public class ListCreation {
                         TrainerPerCourse tpc = new TrainerPerCourse(y, listHolder);
                         listHolder.TrainerPerCourseList.add(tpc);
                     }
+
                     goNext = false;
                     while (goNext == false) {
                         System.out.println("Do any of the students you added, wish to participate in antother course as well? Type 'Yes', if not type 'No':");
@@ -84,21 +86,21 @@ public class ListCreation {
                                 for (int i = 0; i < listHolder.CourseList.size(); i++) {
                                     System.out.println(listHolder.CourseList.get(i).getCourseTitle());
                                 }
-                                int i = sc.nextInt();
+                                int i = Input.inputInt();
                                 System.out.println("From left to right, witch subject is the student attending? Type: 1 for the 1st, 2 for the 2nd etc.. ");
                                 System.out.println(listHolder.CourseList.get(i - 1).subjectList);
-                                int y = sc.nextInt();
+                                int y = Input.inputInt();
                                 System.out.println("From left to right, witch is the student of your choice? Type: 1 for the 1st, 2 for the 2nd etc.. ");
                                 System.out.println(listHolder.CourseList.get(i - 1).subjectList.get(y - 1).StudentList);
-                                int z = sc.nextInt();
+                                int z = Input.inputInt();
                                 System.out.println("From left to right, choose the new course. Type: 1 for the 1st, 2 for the 2nd etc.. ");
                                 for (int j = 0; j < listHolder.CourseList.size(); j++) {
                                     System.out.println(listHolder.CourseList.get(j).getCourseTitle());
                                 }
-                                int j = sc.nextInt();
+                                int j = Input.inputInt();
                                 System.out.println("From left to right, choose the new subject. Type: 1 for the 1st, 2 for the 2nd etc.. ");
                                 System.out.println(listHolder.CourseList.get(j - 1).subjectList);
-                                int k = sc.nextInt();
+                                int k = Input.inputInt();
                                 int r = listHolder.CourseList.get(j - 1).subjectList.get(k - 1).StudentList.size();
                                 listHolder.CourseList.get(j - 1).subjectList.get(k - 1).StudentList.add(listHolder.CourseList.get(i - 1).subjectList.get(y - 1).StudentList.get(z - 1));
                                 for (int m = 0; m < listHolder.CourseList.get(j - 1).subjectList.get(k - 1).AssignmentList.size(); m++) {
@@ -145,16 +147,20 @@ public class ListCreation {
     }
 
     public ListCreation(String tempDate, ListHolder listHolder) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(sdf.parse(tempDate));
-        int d = cal.get(Calendar.DAY_OF_WEEK);
-        System.out.println(d);
+        
         String td1;
         String td2;
         String td3;
         String td4;
         String td5;
+        this.listHolder = new ListHolder();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (EEE)");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
+        Calendar cal = Calendar.getInstance();
+        
+        cal.setTime(sdf2.parse(tempDate));
+        int d = cal.get(Calendar.DAY_OF_WEEK);
+
         if (d == 7) {
             cal.add(Calendar.DAY_OF_YEAR, -5);
             td1 = sdf.format(cal.getTime());
@@ -238,12 +244,8 @@ public class ListCreation {
             cal.add(Calendar.DAY_OF_YEAR, 1);
             td5 = sdf.format(cal.getTime());
         }
-        System.out.println(td1);
-        System.out.println(td2);
-        System.out.println(td3);
-        System.out.println(td4);
-        System.out.println(td5);
         for (Student student : listHolder.StudentList) {
+            
             for (int i = 0; i < student.AssignmentList.size(); i++) {
                 if (student.AssignmentList.get(i).getSubDateTime().equals(td1) || student.AssignmentList.get(i).getSubDateTime().equals(td2) || student.AssignmentList.get(i).getSubDateTime().equals(td3) || student.AssignmentList.get(i).getSubDateTime().equals(td4) || student.AssignmentList.get(i).getSubDateTime().equals(td5)) {
                     this.listHolder.StudentDueList.add(student);
@@ -251,13 +253,6 @@ public class ListCreation {
             }
         }
 
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        return sb.toString();
     }
 
     public ListHolder getListHolder() {
@@ -269,4 +264,9 @@ public class ListCreation {
 
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        return sb.toString();
+    }
 }

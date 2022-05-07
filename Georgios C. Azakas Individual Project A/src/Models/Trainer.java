@@ -22,14 +22,17 @@ public class Trainer {
     ArrayList<Subject> subjectList = new ArrayList();
 
     public Trainer(ListHolder listHolder) throws ParseException {
+        
         System.out.println("Type the Trainers first Name: ");
         this.firstName = Input.inputText();
         System.out.println("Type the Trainers last Name: ");
         this.lastName = Input.inputText();
         System.out.println("From left to right, which course would you like for the trainer to be a part of: Type: 1 for the 1st, 2 for the 2nd etc.. ");
+        
         for (int i = 0; i < listHolder.CourseList.size(); i++) {
             System.out.println(listHolder.CourseList.get(i).getCourseTitle());
         }
+        
         int i = Input.inputInt();
         System.out.println("From left to right, which subject would you like for the trainer to teach; Type: 1 for the 1st, 2 for the 2nd etc.. ");
         System.out.println(listHolder.CourseList.get(i - 1).subjectList);
@@ -45,6 +48,7 @@ public class Trainer {
      * @throws ParseException
      */
     public Trainer(int i, ListHolder listHolder) throws ParseException {
+        
         this.firstName = "Reniart " + i;
         this.lastName = "Gnidoc " + i;
         if (i < 2) {

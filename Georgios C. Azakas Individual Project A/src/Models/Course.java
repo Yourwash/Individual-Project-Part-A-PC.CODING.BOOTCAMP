@@ -44,6 +44,7 @@ public class Course {
     }
 
     public Course(int i, ListHolder listHolder) throws ParseException {
+        
         this.courseTitle = "CB" + i;
         String date = "03-01-2022 (Mon)";
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (EEE)");
@@ -69,21 +70,10 @@ public class Course {
 //        }
 //        this.end_date = "01-" + (4 + k) % 12 + "-20" + (22 + l);
         for (int z = 0; z < 8; z++) {
+            
             subject = new Subject(z, courseTitle, start_date, listHolder);
             subjectList.add(subject);
-
         }
-
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(courseTitle).append("     Start Date: ").append(start_date);
-        sb.append("     End Date: ").append(end_date).append("\n");
-        sb.append("Stream: ").append("\n");
-        sb.append(subjectList);
-        return sb.toString();
     }
 
     public ArrayList<Subject> getSubjectList() {
@@ -124,6 +114,16 @@ public class Course {
 
     public void setStart_date(String start_date) {
         this.start_date = start_date;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(courseTitle).append("     Start Date: ").append(start_date);
+        sb.append("     End Date: ").append(end_date).append("\n");
+        sb.append("Stream: ").append("\n");
+        sb.append(subjectList);
+        return sb.toString();
     }
 
 }

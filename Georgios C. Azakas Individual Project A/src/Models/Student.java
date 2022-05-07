@@ -8,7 +8,6 @@ package Models;
 import Utilities.Input;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
@@ -21,10 +20,11 @@ public class Student {
     private String dateOfBirth;
     private double tuitionFees;
     ArrayList<Assignment> AssignmentList = new ArrayList();
-    Scanner sc = new Scanner(System.in);
+
     boolean goNext = false;
 
     public Student(ListHolder listHolder) throws ParseException {
+        
         while (goNext == false) {
             System.out.println("Add a student to this class. ");
             System.out.println("Type the students first Name: ");
@@ -38,8 +38,9 @@ public class Student {
                 dateOfBirth = Input.inputDate();
                 goNext = true;
             }
+            
             System.out.println("Type the sutdents tuition fees: ");
-            this.tuitionFees = Input.inputDouble();                
+            this.tuitionFees = Input.inputDouble();
             System.out.println("If you wish to add another student, type 'Yes', if not type 'No':");
             String yon = Input.inputText();
             switch (yon) {
@@ -50,8 +51,8 @@ public class Student {
                     goNext = true;
                     break;
             }
+            
             this.AssignmentList = listHolder.AssignmentList;
-
         }
 
     }
@@ -65,6 +66,7 @@ public class Student {
     }
 
     public Student(int i, ArrayList<Assignment> AssignmentList, String subjectTitle) {
+        
         this.firstName = "Yourwash " + subjectTitle;
         this.lastName = "Azakas " + i;
         this.dateOfBirth = "19-04-1995";
@@ -116,11 +118,4 @@ public class Student {
         return sb.toString();
     }
 
-    public String customToString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(AssignmentList);
-        sb.append("\n");
-        return sb.toString();
     }
-
-}

@@ -27,7 +27,7 @@ public class GeorgiosCAzakasIndividualProjectA {
         while (goNext == false) {
             goNext = false;
             while (goNext == false) {
-                System.out.println("Which list would you like to print? Type the names as follows: Student List, Trainer List, Assignment List, Course List, Students per Course List, Trainers per Course List, Assignments per Course List, Assignment per Student List, Migas Student List");               
+                System.out.println("Which list would you like to print? Type the names as follows: Student List, Trainer List, Assignment List, Course List, Students per Course List, Trainers per Course List, Assignments per Course List, Assignment per Student List, Migas Student List");
                 String temp = Input.inputText();
                 switch (temp) {
                     case "Student List":
@@ -59,7 +59,6 @@ public class GeorgiosCAzakasIndividualProjectA {
                         goNext = true;
                         break;
                     case "Assignment per Student List":
-                        boolean toString2 = true;
                         System.out.println(newProject.getListHolder().getAssignmentsPerStudentList());
                         goNext = true;
                         break;
@@ -81,10 +80,18 @@ public class GeorgiosCAzakasIndividualProjectA {
                     break;
             }
         }
-        System.out.println("Type a date (22-02-2022) to see witch student's are due that week.");
-        String tempDate = Input.inputDate();
-        ListCreation newProject1 = new ListCreation(tempDate, newProject.getListHolder());
-        System.out.println(newProject1.getListHolder().getStudentDueList());
-
+        goNext = false;
+        while (goNext == false) {
+            System.out.println("Type a date (22-02-2022) to see witch student's are due that week.");
+            String tempDate = Input.inputDate();
+            ListCreation newProject1 = new ListCreation(tempDate, newProject.getListHolder());
+            if (!newProject1.getListHolder().getStudentDueList().isEmpty()) {
+                System.out.println(newProject1.getListHolder().getStudentDueList());
+                goNext = true;
+            } else {
+                System.out.println("There are no assignments that week. Type another date.");
+                goNext = false;
+            }
+        }
     }
 }

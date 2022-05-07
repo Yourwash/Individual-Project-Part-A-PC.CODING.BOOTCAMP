@@ -23,9 +23,9 @@ public class ListHolder {
     ArrayList<AssignmentsPerStudent> AssignmentsPerStudentList = new ArrayList();
     ArrayList<Student> MigasStudentList = new ArrayList();
     ArrayList<Student> StudentDueList = new ArrayList();
-    
 
-    public ListHolder() {}
+    public ListHolder() {
+    }
 
     public ArrayList<Student> getMigasStudentList() {
         return MigasStudentList;
@@ -42,6 +42,7 @@ public class ListHolder {
     public void setAssignmentsPerStudentList(ArrayList<AssignmentsPerStudent> AssignmentsPerStudentList) {
         this.AssignmentsPerStudentList = AssignmentsPerStudentList;
     }
+
     public ArrayList<Student> getStudentList() {
         return StudentList;
     }
@@ -108,13 +109,7 @@ public class ListHolder {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();        
+        StringBuilder sb = new StringBuilder();
         return sb.toString();
     }
-
-   
-    }
-
-    
-    
-
+}

@@ -23,9 +23,9 @@ public class Assignment {
     private int totalMark;
     boolean goNext = false;
     String yon;
-  
 
     public Assignment() throws ParseException {
+
         while (goNext == false) {
             System.out.println("Type the title of the Assignment: (Example: Assignment 1)");
             this.title = Input.inputText();
@@ -33,11 +33,12 @@ public class Assignment {
             this.description = Input.inputText();
 
             while (goNext == false) {
-                System.out.println("Type the submission date of the Assignment: (dd-MM-yyyy)");                          
+                System.out.println("Type the submission date of the Assignment: (dd-MM-yyyy)");
                 this.subDateTime = Input.inputDate();
                 goNext = true;
             }
-            System.out.println("If you wish to add another Assignment, type 'Yes', if not type 'No':");         
+
+            System.out.println("If you wish to add another Assignment, type 'Yes', if not type 'No':");
             yon = Input.inputText();
             switch (yon) {
                 case "Yes":
@@ -51,6 +52,7 @@ public class Assignment {
     }
 
     public Assignment(int i, String subjectTitle, String date) throws ParseException {
+
         if (i <= 5) {
             this.title = subjectTitle + " Assignment " + i;
             this.description = "Random Assignment";
@@ -68,7 +70,9 @@ public class Assignment {
                     break;
             }
             this.subDateTime = sdf.format(cal.getTime());
+
         } else if (i == 6) {
+            
             this.title = subjectTitle + " Individual Project ";
             this.description = "Random assignment but not an assignment, but an assignment.";
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (EEE)");
@@ -85,7 +89,9 @@ public class Assignment {
                     break;
             }
             this.subDateTime = sdf.format(cal.getTime());
+            
         } else {
+            
             this.title = subjectTitle + " Group Project ";
             this.description = "Random assignment but not an assignment, but an assignment.";
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (EEE)");
@@ -102,6 +108,7 @@ public class Assignment {
                     break;
             }
             this.subDateTime = sdf.format(cal.getTime());
+            
         }
 
     }

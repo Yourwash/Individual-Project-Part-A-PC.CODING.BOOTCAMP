@@ -34,8 +34,10 @@ public class Subject {
     }
 
     public Subject(ListHolder listHolder) throws ParseException {
+        
         while (goNext == false) {
-            while (goNext == false) {
+            
+            while (goNext == false) {              
                 System.out.println("Type one of the follwing subjects: Java, C#, Javascript, Python");
                 this.subjectTitle = Input.inputText();
                 switch (subjectTitle) {
@@ -53,8 +55,9 @@ public class Subject {
                         break;
                 }
             }
+            
             goNext = false;
-            while (goNext == false) {
+            while (goNext == false) {                
                 System.out.println("If this subject is part time, type 'Yes', if not type 'No':");
                 yon = Input.inputText();
                 switch (yon) {
@@ -70,13 +73,15 @@ public class Subject {
             }
 
             this.student = new Student(listHolder);
-            StudentList.add(student);
+            StudentList.add(student);            
             listHolder.StudentList.add(this.student);
+            
             AssignmentsPerStudent aps = new AssignmentsPerStudent(this.student, AssignmentList);
             listHolder.AssignmentsPerStudentList.add(aps);
             this.assignment = new Assignment();
             AssignmentList.add(assignment);
             listHolder.AssignmentList.add(this.assignment);
+            
             System.out.println("If you wish to add another subject, type 'Yes', if not type 'No':");
             yon = Input.inputText();
             switch (yon) {
@@ -92,6 +97,7 @@ public class Subject {
     }
 
     public Subject(int i, String courseTitle, String date, ListHolder listHolder) throws ParseException {
+        
         switch (i) {
             case 0:
                 this.subjectTitle = courseTitle + " Java";
@@ -118,19 +124,23 @@ public class Subject {
                 this.subjectTitle = courseTitle + " Python Part Time";
                 break;
         }
-        for (int j = 1; j <= 7; j++) {
+        
+        for (int j = 1; j <= 7; j++) {           
             this.assignment = new Assignment(j, subjectTitle, date);
             listHolder.AssignmentList.add(this.assignment);
             this.AssignmentList.add(assignment);
         }
-        for (int y = 1; y <= 10; y++) {
+        
+        for (int y = 1; y <= 10; y++) {          
             student = new Student(y, AssignmentList, subjectTitle);
             listHolder.StudentList.add(student);
             this.StudentList.add(student);
-            if (listHolder.CourseList.size() > 0) {
+            
+            if (listHolder.CourseList.size() > 0) {               
                 this.StudentList.add(listHolder.CourseList.get(0).subjectList.get(i).StudentList.get(0));
                 listHolder.StudentList.add(listHolder.CourseList.get(0).subjectList.get(i).StudentList.get(0));
             }
+            
             AssignmentsPerStudent aps = new AssignmentsPerStudent(this.student, AssignmentList);
             listHolder.AssignmentsPerStudentList.add(aps);
         }
